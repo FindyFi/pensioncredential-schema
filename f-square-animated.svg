@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Findynet" data-name="logo" xmlns="http://www.w3.org/2000/svg" width="409" height="409" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-70 0 409 409">
+  <defs>
+    <style>
+
+      @keyframes slidein {
+        0% {
+          offset-distance: 0%;
+        }
+        100% {
+          offset-distance: 100%;
+        }
+      }
+
+      @keyframes slideinFade {
+        0% {
+          offset-distance: 0%;
+          opacity: 0;
+        }
+        50% {
+          opacity: 0;
+          offset-distance: 50%;
+        }
+        100% {
+          offset-distance: 100%;
+          opacity: 1;
+        }
+      }
+
+      .top-clip, .first, .fourth, .text, .top-clip, .third-clip, .second, .third {
+        stroke-width: 0px;
+      }
+
+      .first {
+        fill: #4ffaff;
+      }
+
+      .first, .third, .top-clip {
+        animation: slidein 125ms forwards ease-in;
+        offset-anchor: left top;
+        offset-path: path("m-209,80.9L0,0");
+        offset-rotate: 0deg;
+      }
+
+      .top-clip {
+        animation: slideinFade 125ms forwards ease-in;
+      }
+
+      .second, .fourth, .third-clip {
+        animation: slidein 125ms forwards ease-in;
+        offset-anchor: left top;
+        offset-path: path("m209,-80.9L0,0");
+        offset-rotate: 0deg;
+      }
+
+      .third-clip {
+        animation: slideinFade 125ms forwards ease-in;
+      }
+
+      .fourth {
+        fill: #0a00be;
+      }
+
+      .text {
+        fill: #1d2250;
+      }
+
+      .top-clip {
+        fill: #8cffff;
+      }
+
+      .third-clip {
+        fill: #0038ff;
+      }
+
+      .second, .top-clip-copy {
+        fill: #00c7ff;
+      }
+
+      .third {
+        fill: #0082ff;
+      }
+    </style>
+  </defs>
+  <g>
+    <path class="fourth" d="m131.39,312.99v34.64c0,15.87-12.87,32.48-28.72,37.12l-73.72,21.51c-15.88,4.62-28.75-4.48-28.75-20.36v-55.96c0-15.86,12.87-32.49,28.75-37.12l15.18-4.42l85.48,-24.6c.89-.26,1.77.41,1.77,1.33Z"/>
+    <path class="third" d="m202.33,180.9v82.64c0,15.87-12.87,32.5-28.74,37.14l-100.7,29.36c-15.88,4.64-28.74-4.47-28.74-20.35v-64.8c0-15.86,12.87-32.49,28.75-37.12l127.8-36.9c.89-.26,1.77.4,1.77,1.33Z"/>
+    <path class="third-clip" d="m131.39,265.03v47.97l-58.51,17.05c-15.88,4.64-28.74-4.47-28.74-20.35v-21.29l85.48-24.72c.89-.26,1.77.41,1.77,1.33"/>
+    <path class="second" d="m28.74,144.44C12.87,149.08,0,165.71,0,181.56v55.98c0,15.85,12.87,24.98,28.74,20.34l73.94-21.6c15.73-4.62,28.52-20.99,28.72-36.74v-83c0-.93-.89-1.59-1.78-1.34Z"/>
+    <path class="first" d="m57.31,61.02c-15.85,4.64-28.72,21.27-28.72,37.12v52.62c0,15.88,12.87,24.98,28.72,20.37l182.75-53.35c15.88-4.62,28.74-21.25,28.74-37.12V1.39c0-.92-.89-1.59-1.78-1.34L57.31,61.02Z"/>
+    <path class="top-clip" d="m28.59,144.6v6.16c0,15.88,12.86,24.98,28.72,20.37l74.09-21.62v-32.88c0-.93-.89-1.59-1.78-1.34l-101.03,29.3Z"/>
+  </g>
+</svg>
