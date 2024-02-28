@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="fi">
+    <head>
+        <meta charset="utf-8">
+        <title>Kokeiluja eläketodisteella</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="HandheldFriendly" content="True">
+        <meta name="MobileOptimized" content="width">
+        <meta name="theme-color" content="#0082ff">
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="Eläketodistekokeiluja">
+        <meta property="og:description" content="Kokeile vahvistettavan eläketodisteen hankkimista lompakkoon ja esittämistä alennusperusteena.">
+        <link rel="icon" href="favicon.ico"/>
+    </head>
+    <style>
+        body {
+          background-color: #0082ff;
+          background: linear-gradient(16deg, #0d0342, #0082ff);
+          color: #FFF;
+          font-family: sans-serif;
+          font-size: larger;
+          min-height: 100vh;
+          padding-bottom: 12em;
+          position: relative;
+        }
+        h1 {
+            padding-top: 2em;
+        }
+        h1, body > p, #footer {
+            text-align: center;
+        }
+        .qr {
+            background-color: white;
+            border-radius: 0.5em;
+            display: block;
+            margin: 0.5em auto;
+        }
+        #demot {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+        }
+        #demot > div {
+            background-color: #FFF;
+            border: 1px outset #0d0342;
+            border-radius: 1em;
+            color: #0d0342;
+            /* flex: 1 1 0; */
+            margin: 2em;
+            max-width: 60em;
+            min-width: 20em;
+            overflow: auto;
+            padding: 0;
+            width: 40vw;
+        }
+        #demot > div h2 {
+            background-color: #0d0342;
+            font-size: 2em;
+            color: #FFF;
+            margin: 0;
+            text-align: center;
+        }
+        #demot > div p {
+            margin: 1em;
+        }
+        #footer {
+            bottom: 0;
+            overflow: hidden;
+            position: absolute;
+            width: 100%;
+        }
+        #footer img {
+            display: block;
+            height: 10em;
+            margin: 4em auto 1em auto;
+        }
+        @media (max-width: 60em) {
+            #demot > div {
+                width: 90vw;
+            }
+        }
+    </style>
+    <body>
+        <h1>Kokeiluja eläketodisteella</h1>
+        <p>Tälle sivulle on koottu tietoa muutaman eri toimittajan ratkaisuilla toteutetuista eläketodisteen myöntämiskokeiluista.</p>
+        <p><img class="qr" src="qr.png" alt="QR-koodi"> Tämän sivun osoite QR-koodina</p>
+        <div id="demot">
+            <div>
+                <h2>JSON-LD schema</h2>
+                <p class="credential">Esimerkki todisteesta: <a href="https://pensiondemo.findy.fi/pensioncredential-schema/pensioncredential.json">pensioncredential.json</a></p>
+                <p class="credential">Allekirjoitettu versio todisteesta: <a href="https://pensiondemo.findy.fi/pensioncredential-schema/pensioncredential-signed.json">pensioncredential-signed.json</a></p>
+                <p class="schema">Eläketodisteen skeema: <a href="https://pensiondemo.findy.fi/pensioncredential-schema/pensioncredential-v09.json">pensioncredential-v09.json</a></p>
+                <p class="vocabulary">Eläkesanasto: <a href="https://pensiondemo.findy.fi/pensioncredential-schema/pensionvocabulary-v09.html">pensionvocabulary-v09.html</a></p>
+                <p class="vocabulary">Henkilösanasto: <a href="https://pensiondemo.findy.fi/pensioncredential-schema/personvocabulary-v09.html">personvocabulary-v09.html</a></p>
+                <p class="source">Lähdekoodi: <a href="https://github.com/FindyFi/pensioncredential-schema">github.com/FindyFi/pensioncredential-schema</a></p>
+            </div>
+            <div>
+                <h2>Gataca</h2>
+                <p class="wallet">Hanki lompakko: <a href="https://gataca.io/products/wallet/">Gataca Wallet</a></p>
+                <p class="issuer">Hanki todiste: <a href="https://issuer.gataca.pensiondemo.findy.fi">issuer.gataca.pensiondemo.findy.fi</a></p>
+                <p class="issuer">Esitä todiste: <a href="https://verifier.gataca.pensiondemo.findy.fi">verifier.gataca.pensiondemo.findy.fi</a></p>
+                <p class="source">Lähdekoodi: <a href="https://github.com/FindyFi/pensioncredential-gataca">github.com/FindyFi/pensioncredential-gataca</a></p>
+            </div>
+            <div>
+                <h2>SICPA</h2>
+                <p class="wallet">Hanki lompakko: <a href="https://sphereon.com/sphereon-products/sphereon-wallet/sphereon-wallet-demo-download/">Sphereon Wallet</a></p>
+                <p class="issuer">Hanki todiste: <a href="https://issuer.sicpa.pensiondemo.findy.fi">issuer.sicpa.pensiondemo.findy.fi</a></p>
+                <p class="source">Lähdekoodi: <a href="https://github.com/FindyFi/pensioncredential-sicpa">github.com/FindyFi/pensioncredential-sicpa</a></p>
+                <p class="notes">SICPAn verifiointitoteutus julkaistaan APIn 2-version mukana Q1/2024 aikana.</p>
+            </div>
+            <div>
+                <h2>walt.id</h2>
+                <p class="wallet">Hanki lompakko: <a href="https://wallet.waltid.findy.fi/">walt.id wallet</a> (Findynetin pilviympäristössä)</p>
+                <p class="issuer">Hanki todiste: <a href="https://issuer.waltid.pensiondemo.findy.fi">issuer.waltid.pensiondemo.findy.fi</a></p>
+                <p class="issuer">Esitä todiste: <a href="https://verifier.waltid.pensiondemo.findy.fi">verifier.waltid.pensiondemo.findy.fi</a></p>
+                <p class="source">Lähdekoodi: <a href="https://github.com/FindyFi/pensioncredential-waltid">github.com/FindyFi/pensioncredential-waltid</a></p>
+                <p class="notes">Jos avaat osoitteen <a href="https://wallet.waltid.findy.fi/">wallet.waltid.findy.fi</a> mobiililaitteen selaimella, voit tehdä walt.id:n lompakosta natiivisovelluksen kaltaisen kuvakkeen <a href="https://support.google.com/chrome/answer/9658361">näiden ohjeiden</a> avulla. (Ohjeet ovat Chromelle, mutta Safari toimii lähes samoin.)</p>
+            </div>
+        </div>
+        <div id="footer">
+            <img src="./f-square-animated.svg" alt="F" />
+            <p>Findynet Osuuskunta, 2024</p>
+        </div>
+    </body>
+</html>
