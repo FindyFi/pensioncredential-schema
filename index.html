@@ -1,18 +1,21 @@
 <!DOCTYPE html>
-<html lang="fi">
+<html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Kokeiluja eläketodisteella</title>
+        <title>Pensiondemo</title>
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="HandheldFriendly" content="True">
         <meta name="MobileOptimized" content="width">
         <meta name="theme-color" content="#0082ff">
         <meta property="og:type" content="website">
-        <meta property="og:title" content="Eläketodistekokeiluja">
-        <meta property="og:description" content="Kokeile vahvistettavan eläketodisteen hankkimista lompakkoon ja esittämistä alennusperusteena.">
+        <meta property="og:title" content="Pension credential demos">
+        <meta property="og:description" content="Testing issuance and verification of a pension credential.">
         <link rel="icon" href="favicon.ico"/>
         <style>
+            *[lang]:not([lang="en"]) {
+              display: none;
+            }
             body {
               background-color: #0082ff;
               background: linear-gradient(16deg, #0d0342, #0082ff);
@@ -25,6 +28,48 @@
             }
             .warning {
               background: #ffebd2;
+            }
+            #language {
+                background-color: #4ffaff;
+                border: 1px outset #0d0342;
+                border-radius: 2em;
+                color: #0d0342;
+                display: flex;
+                padding: 0.25em 0 0.25em 0.5em;
+                position: fixed;
+                right: 2em;
+                top: 1em;
+            }
+            #language ul {
+               display: flex;
+               margin: 0;
+               padding: 0;
+            }
+            .language-switcher {
+                padding-top: -0.25em;
+            }
+            .language-switcher li {
+                background-color: #0d0342;
+                border: 1px outset #4ffaff;
+                border-color: #0d0342;
+                border-width: 1px;
+                border-style: outset;
+                border-radius: 2em;
+                box-sizing: border-box;
+                color: #FFF;
+                list-style-type: none;
+                margin: 0em 0.5em 0 0;
+                min-height: 2em;
+                min-width: 2em;
+                padding: 0.25em 0 0 0;
+                text-align: center;
+                width: 2em;
+            }
+            .language-switcher li.selected {
+                background-color: #FFF;
+                border-color: #4ffaff;
+                border-style: inset;
+                color: #0d0342;
             }
             h1 {
                 padding-top: 2em;
@@ -49,7 +94,6 @@
                 border: 1px outset #0d0342;
                 border-radius: 1em;
                 color: #0d0342;
-                /* flex: 1 1 0; */
                 margin: 2em;
                 max-width: 60em;
                 min-width: 20em;
@@ -87,62 +131,120 @@
         </style>
     </head>
     <body>
-        <h1>Kokeiluja eläketodisteella</h1>
-        <p>Tälle sivulle on koottu tietoa muutaman eri toimittajan ratkaisuilla toteutetuista eläketodisteen myöntämiskokeiluista.</p>
-        <p class="qr"><canvas id="code"></canvas>Tämän sivun osoite QR-koodina</p>
+        <div id="language">
+        </div>
+        <h1>Pensiondemo</h1>
+        <p lang="fi">Tälle sivulle on koottu tietoa muutaman eri toimittajan ratkaisuilla toteutetuista eläketodisteen myöntämiskokeiluista.</p>
+        <p lang="en">This page is a collection of pension credential issuance demos conducted with a few vendors' solutions.</p>
+        <p class="qr"><canvas id="code"></canvas> <span lang="fi">Tämän sivun osoite QR-koodina</span><span lang="en">The address of this page as a QR code</span></p>
         <div id="demot">
             <div>
                 <h2>JSON-LD schema</h2>
-                <p class="credential">Esimerkki todisteesta: <a href="https://pensiondemo.findy.fi/pensioncredential-schema/pensioncredential.json">pensioncredential.json</a></p>
-                <p class="credential">Allekirjoitettu versio todisteesta: <a href="https://pensiondemo.findy.fi/pensioncredential-schema/pensioncredential-signed.json">pensioncredential-signed.json</a></p>
-                <p class="schema">Eläketodisteen skeema: <a href="https://pensiondemo.findy.fi/pensioncredential-schema/pensioncredential-v011.json">pensioncredential-v011.json</a></p>
-                <p class="vocabulary">Eläkesanasto: <a href="https://pensiondemo.findy.fi/pensioncredential-schema/pensionvocabulary-v010.html">pensionvocabulary-v010.html</a></p>
-<!--                <p class="vocabulary">Henkilösanasto: <a href="https://pensiondemo.findy.fi/pensioncredential-schema/personvocabulary-v010.html">personvocabulary-v010.html</a></p> -->
-                <p class="source">Lähdekoodi: <a href="https://github.com/FindyFi/pensioncredential-schema">github.com/FindyFi/pensioncredential-schema</a></p>
+                <p class="credential"><span lang="fi">Esimerkki todisteesta</span><span lang="en">Example credential</span>: <a href="https://pensiondemo.findy.fi/pensioncredential-schema/pensioncredential.json">pensioncredential.json</a></p>
+<!--                 <p class="credential">Allekirjoitettu versio todisteesta: <a href="https://pensiondemo.findy.fi/pensioncredential-schema/pensioncredential-signed.json">pensioncredential-signed.json</a></p> -->
+                <p class="schema"><span lang="fi"></span><span lang="en"></span>Eläketodisteen skeema: <a href="https://pensiondemo.findy.fi/pensioncredential-schema/pensioncredential-v011.json">pensioncredential-v011.json</a></p>
+                <p class="vocabulary"><span lang="fi"></span><span lang="en"></span>Eläkesanasto: <a href="https://pensiondemo.findy.fi/pensioncredential-schema/pensionvocabulary-v010.html">pensionvocabulary-v010.html</a></p>
+<!--                <p class="vocabulary"><span lang="fi"></span><span lang="en"></span>Henkilösanasto: <a href="https://pensiondemo.findy.fi/pensioncredential-schema/personvocabulary-v010.html">personvocabulary-v010.html</a></p> -->
+                <p class="source"><span lang="fi">Lähdekoodi</span><span lang="en">Source code</span>: <a href="https://github.com/FindyFi/pensioncredential-schema">github.com/FindyFi/pensioncredential-schema</a></p>
             </div>
             <div>
                 <h2>Gataca</h2>
                 <!-- p class="warning">Gatacan demo ei tällä hetkellä toimi, koska ilmainen kokeilujakso on päättynyt.</p -->
-                <p class="wallet">Hanki lompakko: <a href="https://gataca.io/products/wallet/">Gataca Wallet</a></p>
-                <p class="issuer">Hanki todiste: <a href="https://issuer.gataca.pensiondemo.findy.fi">issuer.gataca.pensiondemo.findy.fi</a></p>
-                <p class="issuer">Esitä todiste: <a href="https://verifier.gataca.pensiondemo.findy.fi">verifier.gataca.pensiondemo.findy.fi</a></p>
-                <p class="source">Lähdekoodi: <a href="https://github.com/FindyFi/pensioncredential-gataca">github.com/FindyFi/pensioncredential-gataca</a></p>
+                <p class="wallet"><span lang="fi">Hanki lompakko</span><span lang="en">Get the wallet</span>: <a href="https://gataca.io/products/wallet/">Gataca Wallet</a></p>
+                <p class="issuer"><span lang="fi">Hanki todiste</span><span lang="en">Get the credential</span>: <a href="https://issuer.gataca.pensiondemo.findy.fi">issuer.gataca.pensiondemo.findy.fi</a></p>
+                <p class="verifier"><span lang="fi">Esitä todiste</span><span lang="en">Present the credential</span>: <a href="https://verifier.gataca.pensiondemo.findy.fi">verifier.gataca.pensiondemo.findy.fi</a></p>
+                <p class="source"><span lang="fi">Lähdekoodi</span><span lang="en">Source code</span>: <a href="https://github.com/FindyFi/pensioncredential-gataca">github.com/FindyFi/pensioncredential-gataca</a></p>
             </div>
             <div>
                 <h2>Lissi</h2>
-                <p class="wallet">Hanki lompakko: <a href="https://www.lissi.id/for-users">Lissi Identity Wallet</a> (TestFlight iOS:lle, Beta Androidille)</p>
-                <p class="issuer">Hanki todiste: <a href="https://issuer.lissi.pensiondemo.findy.fi">issuer.lissi.pensiondemo.findy.fi</a></p>
-                <p class="issuer">Esitä todiste: <a href="https://verifier.lissi.pensiondemo.findy.fi">verifier.lissi.pensiondemo.findy.fi</a></p>
-                <p class="source">Lähdekoodi: <a href="https://github.com/FindyFi/pensioncredential-lissi">github.com/FindyFi/pensioncredential-lissi</a></p>
+                <p class="wallet"><span lang="fi">Hanki lompakko</span><span lang="en">Get the wallet</span>: <a href="https://www.lissi.id/for-users">Lissi Identity Wallet</a> (TestFlight iOS:lle, Beta Androidille)</p>
+                <p class="issuer"><span lang="fi">Hanki todiste</span><span lang="en">Get the credential</span>: <a href="https://issuer.lissi.pensiondemo.findy.fi">issuer.lissi.pensiondemo.findy.fi</a></p>
+                <p class="verifier"><span lang="fi">Esitä todiste</span><span lang="en">Present the credential</span>: <a href="https://verifier.lissi.pensiondemo.findy.fi">verifier.lissi.pensiondemo.findy.fi</a></p>
+                <p class="source"><span lang="fi">Lähdekoodi</span><span lang="en">Source code</span>: <a href="https://github.com/FindyFi/pensioncredential-lissi">github.com/FindyFi/pensioncredential-lissi</a></p>
             </div>
             <div>
                 <h2>Paradym</h2>
-                <p class="wallet">Hanki lompakko: <a href="https://docs.paradym.id/api-and-dashboard/integrating-with-a-holder-wallet/paradym-wallet">Paradym Wallet</a></p>
-                <p class="issuer">Hanki todiste: <a href="https://issuer.paradym.pensiondemo.findy.fi">issuer.paradym.pensiondemo.findy.fi</a></p>
-                <p class="issuer">Esitä todiste: <a href="https://verifier.paradym.pensiondemo.findy.fi">verifier.paradym.pensiondemo.findy.fi</a></p>
-                <p class="source">Lähdekoodi: <a href="https://github.com/FindyFi/pensioncredential-paradym">github.com/FindyFi/pensioncredential-paradym</a></p>
+                <p class="wallet"><span lang="fi">Hanki lompakko</span><span lang="en">Get the wallet</span>: <a href="https://docs.paradym.id/api-and-dashboard/integrating-with-a-holder-wallet/paradym-wallet">Paradym Wallet</a></p>
+                <p class="issuer"><span lang="fi">Hanki todiste</span><span lang="en">Get the credential</span>: <a href="https://issuer.paradym.pensiondemo.findy.fi">issuer.paradym.pensiondemo.findy.fi</a></p>
+                <p class="verifier"><span lang="fi">Esitä todiste</span><span lang="en">Present the credential</span>: <a href="https://verifier.paradym.pensiondemo.findy.fi">verifier.paradym.pensiondemo.findy.fi</a></p>
+                <p class="source"><span lang="fi">Lähdekoodi</span><span lang="en">Source code</span>: <a href="https://github.com/FindyFi/pensioncredential-paradym">github.com/FindyFi/pensioncredential-paradym</a></p>
             </div>
             <div>
                 <h2>SICPA</h2>
-                <p class="wallet">Hanki lompakko: <a href="https://docs.dip.sicpa.com/getting-started/Tutorials/sicpa-reference-wallet/">Talao Wallet</a> ja aktivoi se skannaamalla seuraava QR-koodi</p>
+                <p class="wallet"><span lang="fi">Hanki lompakko</span><span lang="en">Get the wallet</span>: <a href="https://docs.dip.sicpa.com/getting-started/Tutorials/sicpa-reference-wallet/">Talao Wallet</a> ja aktivoi se skannaamalla seuraava QR-koodi</p>
                 <p><img src="https://github.com/FindyFi/pensioncredential-sicpa/raw/main/qrcode.png" style="width: 150px;"/></p>
-                <p class="issuer">Hanki todiste: <a href="https://issuer.sicpa.pensiondemo.findy.fi">issuer.sicpa.pensiondemo.findy.fi</a></p>
-                <p class="source">Lähdekoodi: <a href="https://github.com/FindyFi/pensioncredential-sicpa">github.com/FindyFi/pensioncredential-sicpa</a></p>
-                <p class="notes">SICPAn verifiointitoteutus tulossa myöhemmin...</p>
+                <p class="issuer"><span lang="fi">Hanki todiste</span><span lang="en">Get the credential</span>: <a href="https://issuer.sicpa.pensiondemo.findy.fi">issuer.sicpa.pensiondemo.findy.fi</a></p>
+                <p class="verifier"><span lang="fi">Esitä todiste</span><span lang="en">Present the credential</span>: <a href="https://verifier.sicpa.pensiondemo.findy.fi">verifier.sicpa.pensiondemo.findy.fi</a></p>
+                <p class="source"><span lang="fi">Lähdekoodi</span><span lang="en">Source code</span>: <a href="https://github.com/FindyFi/pensioncredential-sicpa">github.com/FindyFi/pensioncredential-sicpa</a></p>
             </div>
             <div>
                 <h2>walt.id</h2>
-                <p class="wallet">Hanki lompakko: <a href="https://waltid.findy.fi/">walt.id wallet</a> (Findynetin pilviympäristössä)</p>
-                <p class="issuer">Hanki todiste: <a href="https://issuer.waltid.pensiondemo.findy.fi">issuer.waltid.pensiondemo.findy.fi</a></p>
-                <p class="issuer">Esitä todiste: <a href="https://verifier.waltid.pensiondemo.findy.fi">verifier.waltid.pensiondemo.findy.fi</a></p>
-                <p class="source">Lähdekoodi: <a href="https://github.com/FindyFi/pensioncredential-waltid">github.com/FindyFi/pensioncredential-waltid</a></p>
-                <p class="notes">Jos avaat osoitteen <a href="https://waltid.findy.fi/">waltid.findy.fi</a> mobiililaitteen selaimella, voit tehdä walt.id:n lompakosta natiivisovelluksen kaltaisen kuvakkeen <a href="https://support.google.com/chrome/answer/9658361">näiden ohjeiden</a> avulla. (Ohjeet ovat Chromelle, mutta Safari toimii lähes samoin.)</p>
+                <p class="wallet"><span lang="fi">Hanki lompakko</span><span lang="en">Get the wallet</span>: <a href="https://waltid.findy.fi/">walt.id wallet</a> (Findynetin pilviympäristössä)</p>
+                <p class="issuer"><span lang="fi">Hanki todiste</span><span lang="en">Get the credential</span>: <a href="https://issuer.waltid.pensiondemo.findy.fi">issuer.waltid.pensiondemo.findy.fi</a></p>
+                <p class="verifier"><span lang="fi">Esitä todiste</span><span lang="en">Present the credential</span>: <a href="https://verifier.waltid.pensiondemo.findy.fi">verifier.waltid.pensiondemo.findy.fi</a></p>
+                <p class="source"><span lang="fi">Lähdekoodi</span><span lang="en">Source code</span>: <a href="https://github.com/FindyFi/pensioncredential-waltid">github.com/FindyFi/pensioncredential-waltid</a></p>
+                <p lang="fi" class="notes">Jos avaat osoitteen <a href="https://waltid.findy.fi/">waltid.findy.fi</a> mobiililaitteen selaimella, voit tehdä walt.id:n lompakosta natiivisovelluksen kaltaisen kuvakkeen <a href="https://support.google.com/chrome/answer/9658361">näiden ohjeiden</a> avulla. (Ohjeet ovat Chromelle, mutta Safari toimii lähes samoin.)</p>
+                <p lang="en" class="notes">If you go to <a href="https://waltid.findy.fi/">waltid.findy.fi</a> using your mobile browser, you can create a shortcut using <a href="https://support.google.com/chrome/answer/9658361">these instructions</a>. (Instructions are for Chrome, but Safari works almost the same way.)</p>
             </div>
         </div>
         <div id="footer">
             <img src="./f-square-animated.svg" alt="F" />
             <p>Findynet Osuuskunta, 2024</p>
         </div>
+        <script>
+            const params = new URLSearchParams(document.location.search)
+            let currentLanguage = params.get('lang') || 'en'
+            const lcontainer = document.querySelector('#language')
+            const languages = ['fi', 'en']
+            const defaultLanguage = currentLanguage
+            const translatedElementsSelector = '[lang]'
+            const switcher = document.createElement('ul')
+            const css = document.styleSheets[0];
+            switcher.className = 'language-switcher'
+            languages.forEach((lang) => {
+                const li = document.createElement('li')
+                li.textContent = lang
+                li.onclick = (e) => {
+                    currentLanguage = lang
+                    const currentParams = new URLSearchParams(document.location.search)
+                    let newParams = `lang=${encodeURIComponent(lang)}`
+                    const currentUrl = currentParams.get('url')
+                    if (currentUrl) {
+                        newParams += `&url=${encodeURIComponent(currentUrl)}`
+                    }
+                    history.pushState({lang, currentUrl}, '', `${document.location.href.split('?')[0]}?${newParams}`)
+                    const lis = switcher.querySelectorAll('li')
+                    for (l of lis) {
+                        l.classList.remove('selected')
+                    }
+                    li.classList.add('selected')
+                    const html = document.querySelector(':root')
+                    const oldLang = html.lang
+                    html.lang = lang
+                    for (let i = 0; i < css.cssRules.length; i++) {
+                        const rule = css.cssRules[i]
+                        if (rule.selectorText == `[lang]:not([lang="${oldLang}"])`) {
+                            css.deleteRule(i)
+                            css.insertRule(`[lang]:not([lang="${lang}"]) { display: none; }`, i)
+                        }
+                    }
+                    const opts = document.querySelectorAll('option[lang]')
+                    for (const opt of opts) {
+                        if (opt.lang == lang) {
+                            opt.selected = true
+                        }
+                        else {
+                            opt.selected = false
+                        }
+                    }
+                }
+                if (lang == defaultLanguage) {
+                    li.className = 'selected'
+                }
+                switcher.appendChild(li)
+            })
+            lcontainer.appendChild(switcher)
+        </script>
         <script src="https://unpkg.com/@qrcode-js/browser"></script>
         <script>
             const canvas = document.getElementById("code");
